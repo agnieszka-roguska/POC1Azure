@@ -21,7 +21,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
     output_blob_data = {
         'blob_name' : f'{datetime.now().strftime("%X %d.%m.%Y_")}airquality_data.txt',
         'container_name' : 'input',
-        'connection_string' : 'DefaultEndpointsProtocol=https;AccountName=sa0aroguska0poc1;AccountKey=+VXQWrw/UvQYrJ3Woup62H2Ki7U5l6yyJMnHES7JcqYFQu61uidOSHt7Fq52jiBZgpTVboEKYDMo+AStMt3WuQ==;EndpointSuffix=core.windows.net'#(secret_client.get_secret('connection-string-aroguska-poc1')).value
+        'connection_string' : (secret_client.get_secret('connection-string-aroguska-poc1')).value
         }
     blob_client = BlobClient.from_connection_string(
          output_blob_data['connection_string'],
